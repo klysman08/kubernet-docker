@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: meudeploymentset
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: meupod
+  template:
+    metadata:
+      labels:
+        app: meupod
+    spec:
+      containers:
+      - name: site
+        image: fabricioveronez/web-page:green
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: meusdeploymentset-service
+spec:
+  selector:
+    app: meupod
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+    nodePort: 30000
+  type: NodePort
