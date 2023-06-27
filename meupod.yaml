@@ -8,3 +8,4 @@ spec:
     image: fabricioveronez/web-page:blue
     ports:
     - containerPort: 80
+
